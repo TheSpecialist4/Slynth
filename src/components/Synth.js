@@ -1,35 +1,31 @@
 import React, { Component } from 'react';
 
-import { start, stop } from '../audioContext/audioGraph';
-
+import Bass from './Bass';
 class Synth extends Component {
     constructor() {
         super();
         this.state = {
-            playing: false
-        }
-        this.togglePlaying = this.togglePlaying.bind(this);
-    }
-
-    togglePlaying() {
-        const { playing } = this.state;
-        this.setState({ playing: !playing });
-        if(playing) {
-            stop();
-        } else {
-            start();
+            playing: false,
+            stopped: false
         }
     }
 
     render() {
-        const { playing } = this.state;
+        const { playing, stopped } = this.state;
         return (
             <div>
                 <button
-                    onClick={this.togglePlaying}
+                    onClick={() => {this.setState({ playing: true, stopped: false })}}
+                    disabled={playing}
                 >
-                    {playing ? 'Stop' : 'Start'}
+                    Play
                 </button>
+                <button 
+                    onClick={() => this.setState({ stopped: true, playing: false })}
+                    disabled={!playing}
+                >
+                    Stop</button>
+                <Bass start={playing} stop={stopped} />
             </div>
         )
     }
