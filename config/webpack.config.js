@@ -360,8 +360,6 @@ module.exports = function(webpackEnv) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-                presets: ['es2015'],
-                
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -396,8 +394,7 @@ module.exports = function(webpackEnv) {
                 presets: [
                   [
                     require.resolve('babel-preset-react-app/dependencies'),
-                    { helpers: true },
-                    'es2015'
+                    { helpers: true }
                   ],
                 ],
                 cacheDirectory: true,
